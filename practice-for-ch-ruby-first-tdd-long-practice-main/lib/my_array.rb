@@ -34,4 +34,24 @@ class Array
 		transposed_arr
   end
 
-end 
+  def stock_picker
+    min = 999999999
+    max = 0
+    
+    min_idx = 0
+    max_idx = 0
+
+    self.each_with_index do |price, idx|
+      if [min, price].min < min
+        min = [min, price].min
+        min_idx = idx
+      end
+      
+      if [max, price - min].max > max
+        max = [max, price-min].min
+        max_idx = idx
+      end
+    end
+    [min_idx, max_idx]
+  end
+end
